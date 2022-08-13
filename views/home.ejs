@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<%-include('./head')%>
+<body>
+    <section class="search-container"><h4 class="search-title">Movies</h4></section>
+    <section class="movies-container">
+        <%if(movies.length > 0){%>
+            <%movies.forEach(movie => {%>
+                <section class="movie-container">
+                    <img alt="<%=movie.name%>" src="<%=movie.img%>"/>
+                    <h3><%=movie.name%></h3>
+                    <section class="infos">
+                        <div class="item"><%=movie.rating%></div>
+                        <div class="item"><%=movie.year%></div>
+                        <div class="item"><%=movie.director%></div>
+                    </section>
+                    <a class="link" href="/movies/<%=movie.url%>">Read More</a>
+                </section>
+            <%})%>    
+        <%}else{%>
+           <h4 class="depricated">No movies To Show</h4> 
+        <%}%>    
+    </section>
+</body>
+    <script>
+        
+    </script>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<%-include('./head')%>
+<body>
+    <section class="com">
+        <section class="whole">
+            <section class="left-side">
+                <section class="info-box">
+                    <h5 class="box-item">Year : <%=movie.year%></h5>
+                    <h5 class="box-item">Rating : <%=movie.rating%></h5>
+                </section>
+                <h3 class="movie-name">Movie Name : <%=movie.name%></h3>
+                <h4 class="movie-director">Director : <%=movie.director%></h4>
+                <section class="genres">Genre : <%movie.genre.forEach(gen => {%><%=gen%>,<%})%></section>
+                <form class="form info-box" method="post" action="/movies/<%=movie.url%>">
+                    <label class="label">Send a Review</label>
+                    <input class="input form-input" type="text" name="text" placeholder="Review"/>
+                    <input class="input form-input" type="number" name="rate" placeholder="Rate This Film"/>
+                    <button class="btn sbt" type="submit">Submit</button>
+                    <a class="link-button" href="/">Home</a>
+                </form>
+                <h3 class="prim" id="review">Reviews</h3>
+                <section class="comments" id="comments">        
+                    <%movie.comments.forEach(comment => {%>
+                        <h6 class="comment"><%=comment.text%></h6>
+                    <%})%>    
+                </section>
+            </section>
+            <section class="right-side">
+                <img alt="<%=movie.name%>" src="<%=movie.img%>"/>
+            </section>
+        </section>
+    </section>    
+</body>
+    <script>
+        let review = document.getElementById('review')
+        let comments = document.getElementById('comments')
+        let counter = 0
+        
+        review.addEventListener('click', () => {
+            counter%2 === 0 ? comments.style.display = 'none' : comments.style.display = 'flex'
+            counter++
+        })
+    </script>
+</html>
